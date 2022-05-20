@@ -35,6 +35,17 @@ for col in rates_df:
 
 max_rate_val = data_cleaner(re_lists)
 
+paymt_keep = [['Coins', 'Charge (Visa / Mastercard / American Express Only)']]
+
+df["correct_payment"] = df['payment_methods'].isin(paymt_keep)
+
+correct = df.loc[df['correct_payment'] == True, 'capacity'].sum()
+incorrect = df.loc[df['correct_payment'] == False, 'capacity'].sum()
+
+
+
 print("The total number of carparks in toronto is: ", num_lots, "parking lots")
 print("The max rate value for any given period is: ",  "$", max_rate_val)
-print("The total capacity of all lots combined is: ", total_capacity, "parking spots")
+print('The total capacity of lots that take only coins and any type of charge is: ', correct)
+print('The total capacity of lots that take other combinations of payment is: ', incorrect)
+print('The total capacity is: ', total_capacity, "parking spots")
