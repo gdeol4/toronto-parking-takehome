@@ -19,3 +19,5 @@ https://www.geeksforgeeks.org/python-extract-selective-keys-values-including-nes
 https://www.youtube.com/watch?v=4wMKvr_rd8o&ab_channel=LySo
 
 https://hackersandslackers.com/extract-data-from-complex-json-python/
+
+use re to manipulate json file (read it in as string)
