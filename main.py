@@ -10,6 +10,12 @@ with open('green-p-parking-2019.json') as f:
     data = json.loads(f.read())
 
 df = pd.json_normalize(data['carparks'])
+
+num_lots = len(df['id'])
+
+df['capacity'] = pd.to_numeric(df['capacity'])
+total_capacity = df['capacity'].sum()
+
 rate_details = df['rate_details.periods'].tolist()
 
 df_flat = pd.DataFrame([flatten_json(x) for x in rate_details])
@@ -29,4 +35,6 @@ for col in rates_df:
 
 max_rate_val = data_cleaner(re_lists)
 
-print("The max rate value for any given period is: ",  "$", max_rate_val, )
+print("The total number of carparks in toronto is: ", num_lots, "parking lots")
+print("The max rate value for any given period is: ",  "$", max_rate_val)
+print("The total capacity of all lots combined is: ", total_capacity, "parking spots")
