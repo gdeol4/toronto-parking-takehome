@@ -8,7 +8,7 @@ from json_flattener import flatten_json
 warnings.filterwarnings('ignore')
 # metadata
 st.title("City parking lot insights")
-st.subheader("Answers and insights to the 2019 'Green P Parking' dataset." )
+st.subheader("Answers and insights into the 2019 'Green P Parking' dataset." )
 st.text("Gurkamal Singh Deol")
 st.markdown("###### Longitudinal and latitudinal values of the parking lots plotted:")
 # load data
@@ -23,7 +23,7 @@ all_columns = list(df_cords) # creates list of all column headers
 df_cords[all_columns] = df_cords[all_columns].astype(float) # change tye to float
 
 st.map(df_cords)
-st.subheader("Questions and answer:")
+st.subheader("Questions and answers:")
 ########## Question 1 ##########
 st.markdown("###### 1. What is the number of parking lots in Toronto?")
 with st.expander("Answer: Simple counting"):
@@ -111,11 +111,11 @@ with st.expander("Answer: Finding the max rate with flattening and regex"):
 ########## Question 3 ##########
 st.markdown("###### 3.	What is the total capacity across all parking lots? What is the total capacity of parking lots that only accept both “Coins” and any type of “Charge”?")
 with st.expander("Answer: Calculating capacity using boolean indexing"):
-     st.write("The total cpacity of lots accepting only ```coins``` AND ```Charge``` can be found using boolean indexing by first defining a list of target payments in the ```paymt_keep``` variable.")
+     st.write("The total capacity of lots accepting only ```coins``` AND ```Charge``` can be found using boolean indexing by first defining a list of target payments in the ```paymt_keep``` variable.")
      with st.echo():
           paymt_keep = [['Coins', 'Charge (Visa / Mastercard / American Express Only)']]
      
-     st.write("The original dataframe has the field ```payment_methods``` which has a list of payment options as its row value. To get the number of rows that have a value equal to the ```paymnt_keep``` variable, the index field named ```correct_payment``` is created. The value is boolean, with ```True``` as payment condition being satisfied.")
+     st.write("The original dataframe has the field ```payment_methods``` which has a list of payment options as its row value. To get the number of rows that have a value equal to the ```paymnt_keep``` variable, the index field named ```correct_payment``` is created. The value is boolean, with ```True``` being payment condition being satisfied.")
      with st.echo():
          df["correct_payment"] = df['payment_methods'].isin(paymt_keep)
      
@@ -130,5 +130,5 @@ with st.expander("Answer: Calculating capacity using boolean indexing"):
      st.write('The total capacity of lots that take other combinations of payment is: ', incorrect)
      st.write('The total capacity is: ', correct+incorrect, "parking spots")
 st.markdown("###### 4.	What changes would you make to this data set? Why?")
-st.markdown("The dataset itself was in good condition, with very few missing values. I would opt to flatten the structures at least one level and rename the columns to retrieve the information easier. I think it would interesting to provide some other datasets from Toronto Open Data such as the Parking Lot Facilities dataset that includes data on parking lots operated by the City of Toronto.")
+st.markdown("The dataset itself was in good condition, with very few missing values. I would opt to flatten the structures at least one level and rename the columns to retrieve the information easier. I think it would interesting to provide some other datasets from Toronto Open Data such as the Parking Lot Facilities dataset that includes data on parking lots operated by the City of Toronto. This would allow for some comparison between the two.")
 #num_lots = len(df['id'])
