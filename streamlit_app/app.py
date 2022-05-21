@@ -6,7 +6,7 @@ import warnings
 from data_cleaner import data_cleaner
 from json_flattener import flatten_json
 warnings.filterwarnings('ignore')
-
+# metadata
 st.title("City parking lot insights")
 st.subheader("Answers and insights to the 2019 'Green P Parking' dataset." )
 st.text("Gurkamal Singh Deol")
@@ -16,7 +16,6 @@ with open('green-p-parking-2019.json') as f:
     data = json.loads(f.read())
 # normalize json and put into df
 df = pd.json_normalize(data['carparks'])
-
 ######## Mapping the lots ########
 df_cords = df[['lat', 'lng']] # subset df
 df_cords.columns = ['lat', 'lon'] # rename columns
@@ -24,9 +23,7 @@ all_columns = list(df_cords) # creates list of all column headers
 df_cords[all_columns] = df_cords[all_columns].astype(float) # change tye to float
 
 st.map(df_cords)
-
 st.subheader("Questions and answer:")
-
 ########## Question 1 ##########
 st.markdown("###### 1. What is the number of parking lots in Toronto?")
 with st.expander("Answer: Simple counting"):
@@ -48,10 +45,8 @@ with st.expander("Answer: Simple counting"):
     
      st.write("Unique latitudinal values: ", unqiue_lat)
      st.write("Unique longitudinal values: ", unqiue_lng)
-
 ########## Question 2 ##########
 st.markdown("###### 2.	What is the maximum rate with a dollar value for any period across all parking lots?")
-
 with st.expander("Answer: Finding the max rate with flattening and regex"):
      st.write("The highest rate value is found within the nested dictionary, so the first step was to flatten the structure.")
      st.write("The function that performs this is named ```flatten_json``` in the ```json_flattener``` module. The source code for this function is found at the bottom of this section")
@@ -70,7 +65,6 @@ with st.expander("Answer: Finding the max rate with flattening and regex"):
         rates_df = pd.DataFrame(listoflists)
 
      st.write(rates_df.iloc[:, : 3].head())
-     
      st.write("To extract only the rate values ```str.extract()``` was used to append ```re_lists``` with values from each column matching the input regex pattern:")
      with st.echo():
         re_lists = []
@@ -114,7 +108,6 @@ with st.expander("Answer: Finding the max rate with flattening and regex"):
 
                     flatten(nested_json)
                  return out
-
 ########## Question 3 ##########
 st.markdown("###### 3.	What is the total capacity across all parking lots? What is the total capacity of parking lots that only accept both “Coins” and any type of “Charge”?")
 with st.expander("Answer: Calculating capacity using boolean indexing"):
@@ -136,7 +129,6 @@ with st.expander("Answer: Calculating capacity using boolean indexing"):
      st.write('The total capacity of lots that take only coins and any type of charge is: ', correct)
      st.write('The total capacity of lots that take other combinations of payment is: ', incorrect)
      st.write('The total capacity is: ', correct+incorrect, "parking spots")
-
 st.markdown("###### 4.	What changes would you make to this data set? Why?")
 st.markdown("The dataset itself was in good condition, with very few missing values. I would opt to flatten the structures at least one level and rename the columns to retrieve the information easier. I think it would interesting to provide some other datasets from Toronto Open Data such as the Parking Lot Facilities dataset that includes data on parking lots operated by the City of Toronto.")
 #num_lots = len(df['id'])
