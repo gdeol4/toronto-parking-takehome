@@ -1,3 +1,6 @@
+# this function comes from the flatten-json library
+# its description can be found here: https://stackoverflow.com/questions/58442723/how-to-flatten-a-nested-json-recursively-with-flatten-json
+
 def flatten_json(nested_json: dict, exclude: list=['']) -> dict:
     """
     Flatten a list of nested dicts.

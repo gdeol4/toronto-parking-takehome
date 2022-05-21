@@ -138,4 +138,5 @@ with st.expander("Answer: Calculating capacity using boolean indexing"):
      st.write('The total capacity is: ', correct+incorrect, "parking spots")
 
 st.markdown("###### 4.	What changes would you make to this data set? Why?")
+st.markdown("The dataset itself was in good condition, with very few missing values. I would opt to flatten the structures at least one level and rename the columns to retrieve the information easier. I think it would interesting to provide some other datasets from Toronto Open Data such as the Parking Lot Facilities dataset that includes data on parking lots operated by the City of Toronto.")
 #num_lots = len(df['id'])
