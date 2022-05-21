@@ -8,4 +8,4 @@ def data_cleaner(list_of_dfs):
     final_df = pd.to_numeric(final_df['rate_values'])
     max_rate_val = final_df.max()
     
-    return max_rate_val
+    return max_rate_val, final_df
